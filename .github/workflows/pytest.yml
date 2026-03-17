@@ -1,0 +1,56 @@
+name: pytest
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  test:
+    name: Tests & Coverage
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUNBUFFERED: 1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: "pip"
+
+      - name: Install dependencies (pip-tools)
+        run: |
+          pip install pip-tools
+          pip-sync requirements-dev.txt
+          pip install asyncpg
+          pip install pytest-cov
+
+      - name: Run pytest with test DB config
+        run: |
+          export ALCHEMY_POOL_SIZE=5
+          export ALCHEMY_MAX_OVERFLOW=10  
+          export RUN_MIGRATIONS=false
+          export POSTGRES_USER=test
+          export POSTGRES_PASSWORD=test
+          export POSTGRES_DB=test
+          export POSTGRES_HOST=localhost
+          export POSTGRES_PORT=5432
+          PYTHONPATH=. pytest -q --cov=wallet_service wallet_service/tests/ --cov-report=term-missing
+          coverage xml -o coverage.xml
+
+      - name: Coverage summary
+        id: coverage
+        run: |
+          COVERAGE=$(coverage report | tail -n1 | awk '{print $NF}' | sed 's/%//')
+          echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
+          echo "Coverage: ${COVERAGE}%" >> $GITHUB_STEP_SUMMARY 
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
