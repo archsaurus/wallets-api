@@ -4,7 +4,7 @@
 [![Pytest](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pytest.yml/badge.svg)](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pytest.yml)
 ![Python Version](https://img.shields.io/badge/python-3.14%2B-blue)
 ![PostgreSQL Version](https://img.shields.io/badge/postgresql-18.0%2B-blue)
-[![License](https://img.shields.io/github/license/archsaurus/ngs-analyzer)](LICENSE)
+[![License](https://img.shields.io/github/license/archsaurus/ITK_Test-wallets-api)](LICENSE)
 
 
 Данный проект является FastAPI‑реализацией **REST‑API** для управления сервисом электронных кошельков в рамках выполнения тестового задания компании ITK-Academy.
