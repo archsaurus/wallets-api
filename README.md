@@ -1,4 +1,4 @@
-# ITK Test – Wallets API
+# allets API
 
 [![Pylint](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pylint.yml/badge.svg)](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pylint.yml)
 [![Pytest](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pytest.yml/badge.svg)](https://github.com/archsaurus/ITK_Test-wallets-api/actions/workflows/pytest.yml)
@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/github/license/archsaurus/ITK_Test-wallets-api)](https://github.com/archsaurus/ITK_Test-wallets-api/blob/main/LICENCE.md)
 
 
-Данный проект является FastAPI‑реализацией **REST‑API** для управления сервисом электронных кошельков в рамках выполнения тестового задания компании ITK-Academy.
+Данный проект является FastAPI‑реализацией **REST‑API** для управления сервисом электронных кошельков в рамках выполнения тестового задания.
 
 Проект покрыт тестами (кроме error-handler'ов), проверяется линтерами и упакован в Docker‑контейнеры.
 
